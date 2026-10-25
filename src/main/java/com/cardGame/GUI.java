@@ -79,6 +79,14 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         test.push(new Card(6, Suit.Diamonds));
         test.push(new Card(8, Suit.Diamonds));
         test.push(new Card(4, Suit.Diamonds));
+        test.push(new Card(9, Suit.Clubs));
+        test.push(new Card(2, Suit.Hearts));
+        test.push(new Card(5, Suit.Hearts));
+        test.push(new Card(10, Suit.Hearts));
+        test.push(new Card(9, Suit.Hearts));
+        test.push(new Card(6, Suit.Diamonds));
+        test.push(new Card(8, Suit.Diamonds));
+        test.push(new Card(4, Suit.Diamonds));
         
         //The topPile JPanel adds the JLayeredPane containing all of the cards
         //appended from the stack that is now converted into an array
@@ -94,26 +102,41 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
     }
 
     // Method declaration for drawPile
-   public JLayeredPane drawPile(Stack<Card> stackIn) {
-	    Object cards[];
-	    cards = stackIn.toArray();
+ 
+    public JLayeredPane drawPile(Stack<Card> stackIn) {
+        Object[] cards = stackIn.toArray();
 
-	   JLayeredPane jLPane = new JLayeredPane();
-       jLPane.setOpaque(false);
-	   jLPane.setPreferredSize(new Dimension(850, 300));
-	   
-	   for (int i = 0; i <= cards.length-1; i++) {
-		   
-		   Card c = (Card)cards[i];
-		   c.setBounds(i* 40, 50, 100, 150);
-           int layerNumber = i;
-		   jLPane.add(c, Integer.valueOf(layerNumber));
-		   
-	   }
-	   return jLPane;
-	}
-   
+        JLayeredPane jLPane = new JLayeredPane();
+        jLPane.setOpaque(false);
+        jLPane.setPreferredSize(new Dimension(850, 300));
 
+        int x = 0;
+        int y = 0;
+        int offsetX = 42;
+        int offsetY = 120;
+        int cardWidth = 100;
+        int cardHeight = 120;
+
+        for (int i = 0; i < cards.length; i++) {
+            Card c = (Card) cards[i];
+
+        // Start a new row if the next card would exceed the width
+            if (x + cardWidth > 850) {
+                x = 0;
+                y += offsetY;
+            }
+
+        // Position the card
+            c.setBounds(x, y, cardWidth, cardHeight);
+
+        // Add the card to the layered pane
+            jLPane.add(c, Integer.valueOf(i));
+
+        // Advance to the next column
+            x += offsetX;
+    }
+    return jLPane;
+}
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
