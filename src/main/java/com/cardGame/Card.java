@@ -1,3 +1,5 @@
+
+
 package com.cardGame;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -97,6 +99,13 @@ public class Card extends JPanel{
 			this.suit = suit;		
 			isReversed = false;
 			
+			
+			// Stack <Card> stack;
+			// Object[] array = stack.ToArray()
+			// for (int = 0; i < array.length(); i++)
+			// xname.add((Card)(array[i])
+			
+			
 			try {
 				// Load the image for the current file
 				image = ImageIO.read(new File(GUI.IMG_PATH+toString()+".png"));
@@ -109,8 +118,15 @@ public class Card extends JPanel{
 			
 			positionOffset = new Point(0,0);
 			setSize(new Dimension(100, 145));
+			setPreferredSize(new Dimension(100, 145));
+		
+			// use preferred layout 
 			setOpaque(false);
 		}
+		
+		
+		
+		
 		
 		/**
 		 * Turns the card with the back up
@@ -138,4 +154,3 @@ public class Card extends JPanel{
 	
 
 }
-
