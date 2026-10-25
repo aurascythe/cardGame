@@ -39,39 +39,26 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
     	   e.printStackTrace();
        }
        
+       // Creates the topPile JPanel located on the top middle of the application
        this.setLayout(null);
        JPanel topPile = new JPanel();
        topPile.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.blue));
        topPile.setBounds(10, 10, 860, 300);
-       // top left is (0, 0 for coords)
        topPile.setOpaque(false);
        
+       // Creates the cardPile JPanel located on the bottom left of the application
        JPanel cardPile = new JPanel();
        cardPile.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.yellow));
        cardPile.setBounds(10, 350, 300, 200);
        cardPile.setOpaque(false);
        
+       // Creates the bottomPile JPanel located on the bottom right of the application
        JPanel bottomPile = new JPanel();
        bottomPile.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.red));
        bottomPile.setBounds(330, 350, 525, 200);
        bottomPile.setOpaque(false);
        
-     
-
-       
-       // Card Layers Using LayeredPane 
-     //here’s the function definition 
-
-    
-
-       
-       /*******
-        * This is just a test to make sure images are being read correctly on your machine. Please replace
-        * once you have confirmed that the card shows up properly. The code below should allow you to play the solitaire
-        * game once it's fully created.
-        */
-      
-        //testing the drawPile
+        // Creating the stack for the cards
         Stack<Card> test = new  Stack<Card>();
         test.push(new Card(2, Suit.Diamonds));
         test.push(new Card(4, Suit.Diamonds));
@@ -93,26 +80,24 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         test.push(new Card(8, Suit.Diamonds));
         test.push(new Card(4, Suit.Diamonds));
         
+        //The topPile JPanel adds the JLayeredPane containing all of the cards
+        //appended from the stack that is now converted into an array
         topPile.add(drawPile(test));
         
+        //GUI adds all of the JPanels previously mentioned
         this.add(topPile);
         this.add(cardPile);
         this.add(bottomPile);
         
+        //Allows GUI to be seen when program is run 
         this.setVisible(true);
     }
 
-   // Note have a separate class file for the game logic, possibly use a update function 
-   
+    // Method declaration for drawPile
    public JLayeredPane drawPile(Stack<Card> stackIn) {
 	    Object cards[];
-	    cards = stackIn.toArray(); //please note we convert this stack to an array so that we can iterate 
-	    //through it backwards while drawing. You’ll need to cast each element 
-	    //inside cards to a <Card> in order to use the methods to adjust their position
-	    
-	   
-//	   Card card = new Card(3, Card.Suit.Hearts);
-//	   jLPane.add(card);
+	    cards = stackIn.toArray();
+
 	   JLayeredPane jLPane = new JLayeredPane();
        jLPane.setOpaque(false);
 	   jLPane.setPreferredSize(new Dimension(850, 300));
@@ -125,7 +110,6 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		   jLPane.add(c, Integer.valueOf(layerNumber));
 		   
 	   }
-	   
 	   return jLPane;
 	}
    

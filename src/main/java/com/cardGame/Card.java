@@ -99,13 +99,6 @@ public class Card extends JPanel{
 			this.suit = suit;		
 			isReversed = false;
 			
-			
-			// Stack <Card> stack;
-			// Object[] array = stack.ToArray()
-			// for (int = 0; i < array.length(); i++)
-			// xname.add((Card)(array[i])
-			
-			
 			try {
 				// Load the image for the current file
 				image = ImageIO.read(new File(GUI.IMG_PATH+toString()+".png"));
@@ -123,10 +116,6 @@ public class Card extends JPanel{
 			// use preferred layout 
 			setOpaque(false);
 		}
-		
-		
-		
-		
 		
 		/**
 		 * Turns the card with the back up
