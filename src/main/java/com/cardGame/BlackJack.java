@@ -48,6 +48,21 @@ public class BlackJack {
 		secondDealerCard.hide();
 		dealerHand.add(secondDealerCard);
 		
+		calculatePlayerValue();
+
+		while (playerAmount > 21) {
+
+    		playerHand.clear();
+
+    		Card newFirstPlayerCard = deck.poll();
+    		playerHand.add(newFirstPlayerCard);
+
+    		Card newSecondPlayerCard = deck.poll();
+    		playerHand.add(newSecondPlayerCard);
+
+   	 		calculatePlayerValue();
+	}
+
 	}
 	
 
