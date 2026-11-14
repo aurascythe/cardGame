@@ -1,5 +1,3 @@
-
-
 package com.cardGame;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -112,8 +110,6 @@ public class Card extends JPanel{
 			positionOffset = new Point(0,0);
 			setSize(new Dimension(100, 145));
 			setPreferredSize(new Dimension(100, 145));
-		
-			// use preferred layout 
 			setOpaque(false);
 		}
 		
