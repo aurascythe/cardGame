@@ -65,17 +65,10 @@ public class BlackJack {
 		Scanner myObj = new Scanner(System.in);
         System.out.println("Please input the amount you are willing to bet");
         String betInput = myObj.nextLine();
-		int betValue = Integer.parseInt(betInput);
+		betValue = Integer.parseInt(betInput);
         System.out.println("Transaction accepted");
 		
-		
-		if (hasWon == true) {
-			betValue *= 1.5;
-			System.out.println("You have won " + betValue);
-
-
 		}
-	}
 
 	public void calculateWinner() {
 
