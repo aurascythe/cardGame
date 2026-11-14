@@ -126,7 +126,7 @@ public int calculateDealerValue() {
             aceCount++;
         }
         else {
-            dealerAmount += Math.min(currentCard.value, 10);
+            dealerAmount += Math.min(currentCard.value, 13);
         }
     }
 
@@ -173,7 +173,7 @@ public void dealerTurn() {
             aceCount++;
         }
         else {
-            playerAmount += Math.min(currentCard.value, 10);
+            playerAmount += Math.min(currentCard.value, 13);
         }
     }
 
