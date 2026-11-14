@@ -1,13 +1,10 @@
 package com.cardGame;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Stack;
-
-import com.cardGame.Card.Suit;
 
 public class BlackJack {
 	ArrayList<Card> cards = new ArrayList<>();
@@ -63,7 +60,10 @@ public class BlackJack {
 	
 	public void bet() {
 		
-		
+		Scanner myObj = new Scanner(System.in);
+        System.out.println("Please input the amount you are willing to bet");
+        String betInput = myObj.nextLine();
+        System.out.println("Transaction accepted");
 		
 		
 		
@@ -95,49 +95,75 @@ public class BlackJack {
 
 	}
 
-	public int calculateDealerValue() {
-		int dealerAmount = 0;
-		for (int i = 0; i < dealerHand.size(); i++) {
-
-			dealerAmount += dealerHand.get(i).value;
-
-		}
-		return dealerAmount;
-	}
 	
-	public void dealerTurn() {
-		hasStand = true;
-		for (int i = 0; i < dealerHand.size(); i++) {
-			
-			dealerAmount = dealerAmount + dealerHand.get(i).value;
-			
-			
-		}
-		System.out.println(dealerAmount);
-		
-		while (calculateDealerValue() <= 16) {
-			Card selectedCard = deck.poll();
-			selectedCard.hide();
-			dealerHand.add(selectedCard);
-			
-		}
+public int calculateDealerValue() {
+    int dealerAmount = 0;
+    int aceCount = 0;
 
-			for (int i = 0; i <dealerHand.size(); i++) {
-				Card currentCard = dealerHand.get(i);
-				currentCard.show();
-			}
+    for (int i = 0; i < dealerHand.size(); i++) {
+        Card currentCard = dealerHand.get(i);
 
-			return;
-			
-		}
+        if (currentCard.value == 1) {
+            dealerAmount += 11;
+            aceCount++;
+        }
+        else {
+            dealerAmount += Math.min(currentCard.value, 10);
+        }
+    }
+
+    while (dealerAmount > 21 && aceCount > 0) {
+        dealerAmount -= 10;
+        aceCount--;
+    }
+
+    return dealerAmount;
+}
+
+
+public void dealerTurn() {
+    hasStand = true;
+
+    for (int i = 0; i < dealerHand.size(); i++) {
+        dealerHand.get(i).show();
+    }
+
+    while (calculateDealerValue() <= 16) {
+        Card selectedCard = deck.poll();
+
+        if (selectedCard == null) {
+            break;
+        }
+
+        dealerHand.add(selectedCard);
+        selectedCard.show();
+    }
+
+    dealerAmount = calculateDealerValue();
+    System.out.println(dealerAmount);
+}
+
 	
 	public void calculatePlayerValue() {
+		int playerAmount = 0;
+		int aceCount = 0;
+
 		for (int i = 0; i < playerHand.size(); i++) {
-			
-			playerAmount = playerAmount + playerHand.get(i).value;
-			
-			
-		}
+        Card currentCard = playerHand.get(i);
+
+        if (currentCard.value == 1) {
+            dealerAmount += 11;
+            aceCount++;
+        }
+        else {
+            dealerAmount += Math.min(currentCard.value, 10);
+        }
+    }
+
+    while (dealerAmount > 21 && aceCount > 0) {
+        dealerAmount -= 10;
+        aceCount--;
+    }
 		System.out.println(playerAmount);
 		
 		if (playerAmount > 21) {

@@ -1,7 +1,6 @@
 package com.cardGame;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.*;
 
@@ -119,10 +118,6 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         betButton.addActionListener(e -> {
             	hasBet = true;
             	
-            	Scanner myObj = new Scanner(System.in);
-            	System.out.println("Please input the amount you are willing to bet");
-            	String betInput = myObj.nextLine();
-            	System.out.println("Transaction accepted");
             	
             	betButton.setVisible(false);
             	this.repaint();
