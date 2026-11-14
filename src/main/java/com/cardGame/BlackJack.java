@@ -14,6 +14,7 @@ public class BlackJack {
 	int playerAmount = 0;
 	boolean hasStand = false;
 	boolean hasWon = false;
+	int betValue = 0;
 
 	Stack <Card> playerHand;
 	Stack <Card> dealerHand;
@@ -64,9 +65,9 @@ public class BlackJack {
 		Scanner myObj = new Scanner(System.in);
         System.out.println("Please input the amount you are willing to bet");
         String betInput = myObj.nextLine();
+		int betValue = Integer.parseInt(betInput);
         System.out.println("Transaction accepted");
 		
-		int betValue = Integer.parseInt(betInput);
 		
 		if (hasWon == true) {
 			betValue *= 1.5;
@@ -85,10 +86,16 @@ public class BlackJack {
     else if (dealerAmount > 21) {
         hasWon = true;
         System.out.println("Dealer busted! You won");
+
+		int profit = (int)(betValue * 1.5);
+		System.out.println("You have won " + profit);
     }
     else if (playerAmount > dealerAmount) {
         hasWon = true;
         System.out.println("You won");
+
+		int profit = (int)(betValue * 1.5);
+		System.out.println("You have won " + profit);
     }
     else if (playerAmount < dealerAmount) {
         hasWon = false;
