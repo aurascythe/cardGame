@@ -99,19 +99,6 @@ public class BlackJack {
     }
 }
 
-
-	public void calculateTie() {
-		int playerAmountFromTwentyOne = 21 - playerAmount;
-		int dealerAmountFromTwentyOne = 21 - dealerAmount;
-
-		if (playerAmountFromTwentyOne == dealerAmountFromTwentyOne) {
-			System.out.println("You tied");
-
-		}
-
-	}
-
-	
 public int calculateDealerValue() {
     int dealerAmount = 0;
     int aceCount = 0;
@@ -156,15 +143,14 @@ public void dealerTurn() {
     }
 
     dealerAmount = calculateDealerValue();
-    System.out.println(dealerAmount);
+    System.out.println("Dealer amount: " + dealerAmount);
 }
 
-	
 	public void calculatePlayerValue() {
-		int playerAmount = 0;
-		int aceCount = 0;
+    playerAmount = 0;
+    int aceCount = 0;
 
-		for (int i = 0; i < playerHand.size(); i++) {
+    for (int i = 0; i < playerHand.size(); i++) {
         Card currentCard = playerHand.get(i);
 
         if (currentCard.value == 1) {
@@ -180,23 +166,12 @@ public void dealerTurn() {
         playerAmount -= 10;
         aceCount--;
     }
-		System.out.println(playerAmount);
-		
-		if (playerAmount > 21) {
-			System.out.println("You lost");
-			hasLost = true;
-			return;
-			
-		}
-		else  {
 
-			hit();
+    System.out.println("Player amount: " + playerAmount);
 
-		}
-		
-	}
-	
-	
-	
-	
+    if (playerAmount > 21) {
+        System.out.println("You lost");
+        hasLost = true;
+    }
+}
 }

@@ -98,6 +98,7 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         hitButton.addActionListener(e -> {
         	if (hasBet == true) {
         		
+                game.hit();
 				game.calculatePlayerValue();
 
 				if (game.hasLost == true) {
@@ -120,7 +121,6 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 
             	hasBet = true;
             	
-            	
             	betButton.setVisible(false);
             	this.repaint();
          
@@ -137,7 +137,6 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 					hitButton.setVisible(false);
 
 				}
-				game.calculateTie();
 				game.calculateWinner();
         		update();
         		
