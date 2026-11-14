@@ -13,6 +13,7 @@ public class BlackJack {
 	int dealerAmount = 0;
 	int playerAmount = 0;
 	boolean hasStand = false;
+	boolean hasWon = false;
 
 	Stack <Card> playerHand;
 	Stack <Card> dealerHand;
@@ -65,23 +66,38 @@ public class BlackJack {
         String betInput = myObj.nextLine();
         System.out.println("Transaction accepted");
 		
+		int betValue = Integer.parseInt(betInput);
 		
-		
+		if (hasWon == true) {
+			betValue *= 1.5;
+			System.out.println("You have won " + betValue);
+
+
+		}
 	}
 
 	public void calculateWinner() {
-		int playerAmountFromTwentyOne = 21 - playerAmount;
-		int dealerAmountFromTwentyOne = 21 - dealerAmount;
 
-		if (playerAmountFromTwentyOne < dealerAmountFromTwentyOne) {
-			System.out.println("You won");
-
-		}
-		else {
-			System.out.println("You lost");
-		}
-
-	}
+    if (playerAmount > 21) {
+        hasWon = false;
+        System.out.println("You lost");
+    }
+    else if (dealerAmount > 21) {
+        hasWon = true;
+        System.out.println("Dealer busted! You won");
+    }
+    else if (playerAmount > dealerAmount) {
+        hasWon = true;
+        System.out.println("You won");
+    }
+    else if (playerAmount < dealerAmount) {
+        hasWon = false;
+        System.out.println("You lost");
+    }
+    else {
+        System.out.println("You tied");
+    }
+}
 
 
 	public void calculateTie() {
@@ -152,16 +168,16 @@ public void dealerTurn() {
         Card currentCard = playerHand.get(i);
 
         if (currentCard.value == 1) {
-            dealerAmount += 11;
+            playerAmount += 11;
             aceCount++;
         }
         else {
-            dealerAmount += Math.min(currentCard.value, 10);
+            playerAmount += Math.min(currentCard.value, 10);
         }
     }
 
-    while (dealerAmount > 21 && aceCount > 0) {
-        dealerAmount -= 10;
+    while (playerAmount > 21 && aceCount > 0) {
+        playerAmount -= 10;
         aceCount--;
     }
 		System.out.println(playerAmount);

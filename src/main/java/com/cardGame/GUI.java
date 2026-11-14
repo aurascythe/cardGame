@@ -116,6 +116,8 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         });
         
         betButton.addActionListener(e -> {
+                game.bet();
+
             	hasBet = true;
             	
             	
